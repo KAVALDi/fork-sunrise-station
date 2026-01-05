@@ -33,6 +33,11 @@ namespace Content.Server.Ghost.Roles.UI
                 case LeaveGhostRoleRaffleMessage req:
                     _ghostRoleSystem.LeaveRaffle(Player, req.Identifier);
                     break;
+                // Sunrise: ивенты тюрьмы - подтверждение победителей
+                case Content.Shared._Sunrise.Events.ConfirmPrisonEventWinnersMessage conf:
+                    var prisonEvents = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<Content.Server._Sunrise.Ghost.Events.PlanetPrisonEventSystem>();
+                    prisonEvents.HandleConfirmPrisonEventWinners(Player, conf);
+                    break;
             }
         }
 

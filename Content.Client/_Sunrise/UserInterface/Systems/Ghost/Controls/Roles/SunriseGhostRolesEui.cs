@@ -1,28 +1,25 @@
 using System.Linq;
 using Content.Client.Eui;
 using Content.Client.Players.PlayTimeTracking;
+using Content.Client.UserInterface.Systems.Ghost.Controls.Roles;
 using Content.Shared.Eui;
 using Content.Shared.Ghost.Roles;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
-namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
+namespace Content.Client._Sunrise.UserInterface.Systems.Ghost.Controls.Roles
 {
     [UsedImplicitly]
-    public sealed class GhostRolesEui : BaseEui
+    public sealed class SunriseGhostRolesEui : BaseEui
     {
-        // Sunrise-Start
-        private readonly Content.Client._Sunrise.UserInterface.Systems.Ghost.Controls.Roles.SunriseGhostRolesWindow _window;
-        // Sunrise-End
+        private readonly SunriseGhostRolesWindow _window;
         private GhostRoleRulesWindow? _windowRules = null;
         private uint _windowRulesId = 0;
 
-        public GhostRolesEui()
+        public SunriseGhostRolesEui()
         {
-            // Sunrise-Start
-            _window = new Content.Client._Sunrise.UserInterface.Systems.Ghost.Controls.Roles.SunriseGhostRolesWindow();
-            // Sunrise-End
+            _window = new SunriseGhostRolesWindow();
 
             _window.OnRoleRequestButtonClicked += info =>
             {
@@ -127,3 +124,4 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
         }
     }
 }
+

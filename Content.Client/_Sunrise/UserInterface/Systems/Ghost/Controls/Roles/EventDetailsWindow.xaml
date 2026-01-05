@@ -1,0 +1,22 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+            Title="Подробнее об ивенте"
+            MinSize="400 300"
+            SetSize="400 400">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True">
+        <!-- Sunrise-Start: кнопка сброса приоритетов -->
+        <Button Name="ResetPrioritiesButton"
+                Text="Сбросить все приоритеты"
+                HorizontalExpand="True"
+                Margin="0 0 0 4"/>
+        <!-- Sunrise-End -->
+        <ScrollContainer VerticalExpand="True"
+                         HScrollEnabled="False">
+            <BoxContainer Orientation="Vertical"
+                          Name="RolesContainer"
+                          VerticalExpand="True">
+                <!-- Role entries are added here by code -->
+            </BoxContainer>
+        </ScrollContainer>
+    </BoxContainer>
+</DefaultWindow>
+

@@ -53,17 +53,31 @@ public sealed class ProtectedGridSystem : EntitySystem
     }
 
     private void OnFloorTileAttempt(Entity<ProtectedGridComponent> ent, ref FloorTileAttemptEvent args)
-    {
+    {// Sunrise-Start: planet override
+        var xform = Transform(ent);
+        var mapUid = xform.MapUid;
+
+        Logger.Info($"[ProtectedGridSystem DEBUG]: Проверка planet для плитки {args.GridIndices} на карте {mapUid}");
+
+        if (mapUid != null && EntityManager.HasComponent<Content.Shared.Parallax.Biomes.BiomeComponent>(mapUid.Value))
+        {
+            Logger.Info($"[ProtectedGridSystem DEBUG]: Пропускаю блокировку, т.к. найден BiomeComponent (planet) на карте {mapUid.Value}.");
+            return;
+        }
+        // Sunrise-End
+
         var chunkOrigin = SharedMapSystem.GetChunkIndices(args.GridIndices, 8);
 
         if (!ent.Comp.BaseIndices.TryGetValue(chunkOrigin, out var data))
         {
+            Logger.Info($"[ProtectedGridSystem DEBUG]: Не найден chunkOrigin={chunkOrigin} для плитки {args.GridIndices}! Блокирую размещение.");
             args.Cancelled = true;
             return;
         }
 
         if (!SharedMapSystem.FromBitmask(args.GridIndices, data))
         {
+            Logger.Info($"[ProtectedGridSystem DEBUG]: Нет разрешения на установку: индексы {args.GridIndices} вне изначального BaseIndices[chunkOrigin={chunkOrigin}]. Блокирую размещение.");
             args.Cancelled = true;
         }
     }

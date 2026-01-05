@@ -1,16 +1,51 @@
 <DefaultWindow xmlns="https://spacestation14.io"
-            Title="{Loc 'ghost-roles-window-title'}"
-            MinSize="490 400"
-            SetSize="490 500">
-    <Label Name="NoRolesMessage"
-           Text="{Loc 'ghost-roles-window-no-roles-available-label'}"
-           VerticalAlignment="Top" />
-    <ScrollContainer VerticalExpand="True"
-                     HScrollEnabled="False">
-        <BoxContainer Orientation="Vertical"
-                      Name="EntryContainer"
-                      VerticalExpand="True">
-            <!-- Ghost role entries are added here by code -->
-        </BoxContainer>
-    </ScrollContainer>
+              xmlns:pda="clr-namespace:Content.Client.PDA"
+              Title="{Loc 'ghost-roles-window-title'}"
+              MinSize="490 400"
+              SetSize="490 500">
+  <!-- Sunrise-Start: навбар вкладок -->
+  <BoxContainer Name="NavigationBar"
+                Orientation="Horizontal"
+                MinHeight="32"
+                Margin="0 2 0 4"
+                HorizontalExpand="True">
+    <pda:PdaNavigationButton Name="MainTabButton"
+                             MinWidth="100"
+                             LabelText="Главная"
+                             IsCurrent="True"
+                             HorizontalExpand="True"
+                             SizeFlagsStretchRatio="1"/>
+    <pda:PdaNavigationButton Name="EventsTabButton"
+                             MinWidth="100"
+                             LabelText="Ивенты"
+                             HorizontalExpand="True"
+                             SizeFlagsStretchRatio="1"/>
+  </BoxContainer>
+  <!-- Sunrise-End -->
+
+  <Label Name="NoRolesMessage"
+         Text="{Loc 'ghost-roles-window-no-roles-available-label'}"
+         VerticalAlignment="Top" />
+  <ScrollContainer VerticalExpand="True"
+                   HScrollEnabled="False"
+                   Name="MainScrollContainer">
+    <BoxContainer Orientation="Vertical"
+                  Name="EntryContainer"
+                  VerticalExpand="True">
+      <!-- Ghost role entries are added here by code -->
+    </BoxContainer>
+  </ScrollContainer>
+
+  <!-- Sunrise-Start: контейнер для ивентов -->
+  <ScrollContainer VerticalExpand="True"
+                   HScrollEnabled="False"
+                   Name="EventsScrollContainer"
+                   Visible="False">
+    <BoxContainer Orientation="Vertical"
+                  Name="EventsContainer"
+                  VerticalExpand="True">
+      <!-- Event entries for demo -->
+    </BoxContainer>
+  </ScrollContainer>
+  <!-- Sunrise-End -->
 </DefaultWindow>

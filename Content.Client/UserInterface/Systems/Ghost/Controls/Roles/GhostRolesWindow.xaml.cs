@@ -6,6 +6,11 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
+// Sunrise-Start
+using Content.Client.PDA;
+// Для GhostRoleInfoBox, GhostRoleButtonsBox, BoxContainer и Label
+using Content.Client.UserInterface.Systems.Ghost.Controls.Roles;
+// Sunrise-End
 
 namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
 {
@@ -22,7 +27,60 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
         public GhostRolesWindow()
         {
             RobustXamlLoader.Load(this);
+            // Sunrise-Start: вкладки
+            MainTabButton.OnPressed += _ =>
+            {
+                MainTabButton.IsCurrent = true;
+                EventsTabButton.IsCurrent = false;
+                EntryContainer.Visible = true;
+                MainScrollContainer.Visible = true;
+                EventsContainer.Visible = false;
+                EventsScrollContainer.Visible = false;
+            };
+            EventsTabButton.OnPressed += _ =>
+            {
+                MainTabButton.IsCurrent = false;
+                EventsTabButton.IsCurrent = true;
+                EntryContainer.Visible = false;
+                MainScrollContainer.Visible = false;
+                EventsContainer.Visible = true;
+                EventsScrollContainer.Visible = true;
+
+                if (EventsContainer.ChildCount == 0)
+                    AddEventDemoBox(); // hot reload: повторно не добавлять
+            };
+            // Sunrise-End
         }
+
+        // Sunrise-Start: пример ивента
+        private void AddEventDemoBox()
+        {
+            // Демонстрация ивента: "Скелет из шкафа"
+            var eventInfo = new GhostRoleInfoBox("Скелет из шкафа", "Вы, похоже, один из старейших сотрудников станции! Верните себе прежнюю должность или устройте хаос! Мир в ваших руках.");
+
+            var eventButtonRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
+            var playersBtn = new Button
+            {
+                Text = "0/1",
+                HorizontalExpand = true,
+                SizeFlagsStretchRatio = 1
+            };
+            var detailsBtn = new Button
+            {
+                Text = "Подробнее",
+                HorizontalExpand = true,
+                SizeFlagsStretchRatio = 1
+            };
+            eventButtonRow.AddChild(playersBtn);
+            eventButtonRow.AddChild(detailsBtn);
+
+            var eventBox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical };
+            eventBox.AddChild(eventInfo);
+            eventBox.AddChild(eventButtonRow);
+            EventsContainer.AddChild(eventBox);
+            // Для теста можно повесить на detailsBtn событие открытия окна подробностей
+        }
+        // Sunrise-End
 
         public void ClearEntries()
         {
