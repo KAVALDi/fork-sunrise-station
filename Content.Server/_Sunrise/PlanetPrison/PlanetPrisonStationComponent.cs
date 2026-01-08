@@ -12,11 +12,7 @@ namespace Content.Server._Sunrise.PlanetPrison;
 public sealed partial class PlanetPrisonStationComponent : Component
 {
     [DataField(required: true)]
-    public HashSet<ProtoId<GameMapPrototype>> StationsModern = [];
-
-    [DataField(required: true)]
-    public HashSet<ProtoId<GameMapPrototype>> StationsOld = [];
-
+    public ProtoId<GameMapPrototype> FallbackMap;
     public MapId MapId = MapId.Nullspace;
 
     [DataField]

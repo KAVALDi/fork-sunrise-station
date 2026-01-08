@@ -238,8 +238,8 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<int> MinPlayersPlanetPrison =
         CVarDef.Create("planet_prison.min_players", 0, CVar.SERVERONLY);
 
-    public static readonly CVarDef<bool> PlanetPrisonModern =
-        CVarDef.Create("planet_prison.modern", true, CVar.SERVERONLY);
+    public static readonly CVarDef<string> PlanetPrisonMapPool =
+        CVarDef.Create("planet_prison.map_pool", "PlanetPrisonMapPool", CVar.SERVERONLY);
 
     /*
      * MaxLoadedChunks
@@ -312,6 +312,9 @@ public sealed partial class SunriseCCVars : CVars
     public static readonly CVarDef<bool> RunPresetVoteAfterRestart =
         CVarDef.Create("vote.run_preset_vote_after_restart", false);
 
+    public static readonly CVarDef<bool> RunPlanetPrisonMapVoteAfterRestart =
+        CVarDef.Create("vote.run_planet_prison_vote_after_restart", false);
+
     public static readonly CVarDef<int> VotingsDelay = CVarDef.Create("vote.votings_delay", 60);
 
     public static readonly CVarDef<bool> VoteMusicDisable =
@@ -324,7 +327,7 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("vote.pause", true, CVar.SERVERONLY);
 
     public static readonly CVarDef<bool> ExcludeMaps = CVarDef.Create("vote.exclude_maps", true, CVar.SERVERONLY);
-
+    public static readonly CVarDef<bool> ExcludePrisonMaps = CVarDef.Create("vote.exclude_prison_maps", true, CVar.SERVERONLY);
     public static readonly CVarDef<bool> ExcludePresets =
         CVarDef.Create("vote.exclude_presets", true, CVar.SERVERONLY);
 
