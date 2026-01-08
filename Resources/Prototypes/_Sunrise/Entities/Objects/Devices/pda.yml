@@ -184,9 +184,8 @@
         !type:String
         pda-space-prison-boss
   - type: PdaBorderColor
-    borderColor: "#cc7014"
-    accentVColor: "#cc3d3d"
-    accentHColor: "#3d3d40"
+    borderColor: "#802d29"
+    accentHColor: "#111111"
   - type: Icon
     state: pda-space-prison-boss
 
@@ -204,8 +203,8 @@
         !type:String
         pda-space-prison-inspector
   - type: PdaBorderColor
-    borderColor: "#cc7014"
-    accentVColor: "#2e4259"
+    borderColor: "#802d29"
+    accentHColor: "#584f70"
   - type: Icon
     state: pda-space-prison-inspector
 
@@ -324,8 +323,8 @@
         !type:String
         pda-space-prison-worker
   - type: PdaBorderColor
-    borderColor: "#cc7014"
-    accentVColor: "#198019"
+    borderColor: "#6b3000"
+    accentVColor: "#4b0100"
   - type: Icon
     state: pda-space-prison-worker
   - type: CartridgeLoader
